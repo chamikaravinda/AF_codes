@@ -20,13 +20,36 @@
         /* executing the above created function */
         printVehicleNameOuter();
 
+
+        /*Befor the change the code was like this
         var vehicle = {
                 vehicleName:'Nissan',
-                /*assing the functionalities of the printVehicleNameOuter to new function printVehicleNameInner */
+                //assing the functionalities of the printVehicleNameOuter to new function printVehicleNameInner
                 printVehicleNameInner : printVehicleNameOuter
             };
 
         vehicle.printVehicleNameInner();
+        */
+
+        //Code after the changes
+        var vehicle = {
+            vehicleName:'Nissan',
+            printVehicleNameInner : function () {
+                return function () {
+                    console.log(this.vehicleName);
+                }
+            }
+        };
+
+
+        var execute = vehicle.printVehicleNameInner();
+        execute();
+
+        execute.call(vehicle);
+
+        var execute_2 = vehicle.printVehicleNameInner().bind(vehicle);
+        execute_2();
+
     </script>
 </body>
 </html>
