@@ -8,7 +8,18 @@
 
     <!-- question No 1 -->
     <script>
-        var vehicleName = 'Toyota';
+        var vehicleName = 'Toyota';//this is a globel variable
+
+
+        /*
+        *
+        ****window object****
+        The window object represents an open window in a browser.
+        If a document contain frames (<iframe> tags),
+        the browser creates one window object for the HTML document, and one additional window object for each frame.
+        *********************
+        *
+        */
 
         function printVehicleNameOuter() {
            console.log(this.vehicleName);
@@ -35,7 +46,7 @@
         var vehicle = {
             vehicleName:'Nissan',
             printVehicleNameInner : function () {
-                return function () {
+                return function () {//this is a anonymous function.(function without name )
                     console.log(this.vehicleName);
                 }
             }
@@ -43,13 +54,18 @@
 
 
         var execute = vehicle.printVehicleNameInner();
+        /*
+        * when deleard a variable in js,its not block scope.it belongs to the outer block ass well.may be that's why this print TOyota */
         execute();
 
+        /* call funcation can call a function belong to a spefic obejcet
+        * see :- https://www.w3schools.com/js/js_function_call.asp
+        */
         execute.call(vehicle);
 
-        var execute_2 = vehicle.printVehicleNameInner().bind(vehicle);
-        execute_2();
-
+        /* var execute_2 = vehicle.printVehicleNameInner().bind(vehicle);
+         execute_2();
+ */
     </script>
 </body>
 </html>
